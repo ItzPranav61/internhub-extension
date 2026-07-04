@@ -10,7 +10,7 @@ export function InternshipCard({ internship }: InternshipCardProps) {
       <p className="text-sm font-semibold text-slate-900">
         {internship.company}
       </p>
-      <p className="mt-1 text-sm text-slate-700">{internship.role}</p>
+      <p className="mt-1 text-sm text-slate-700">{internship.title}</p>
       <p className="mt-2 text-xs font-medium text-slate-500">
         {internship.status}
       </p>

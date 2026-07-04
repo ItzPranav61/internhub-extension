@@ -7,5 +7,5 @@
     "default_title": "InternHub",
     "default_popup": "index.html"
   },
-  "permissions": ["storage"]
+  "permissions": ["storage", "activeTab"]
 }

@@ -1,8 +1,15 @@
-export type InternshipStatus = 'Saved' | 'Applied'
+export type InternshipStatus =
+  | 'Saved'
+  | 'Applied'
+  | 'Interview'
+  | 'Rejected'
+  | 'Offer'
 
-export type Internship = {
-  id: number
+export interface Internship {
+  id: string
+  title: string
   company: string
-  role: string
+  url: string
   status: InternshipStatus
+  savedAt: string
 }
