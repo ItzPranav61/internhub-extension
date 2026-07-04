@@ -1,12 +1,17 @@
-import type { Internship } from '../types/internship'
+import type { Internship, InternshipStatus } from '../types/internship'
 import { InternshipCard } from './InternshipCard'
 
 type InternshipListProps = {
   internships: Internship[]
   isLoading: boolean
+  onStatusChange: (id: string, status: InternshipStatus) => void
 }
 
-export function InternshipList({ internships, isLoading }: InternshipListProps) {
+export function InternshipList({
+  internships,
+  isLoading,
+  onStatusChange,
+}: InternshipListProps) {
   return (
     <section>
       <h2 className="border-y border-slate-200 px-4 py-3 text-sm font-semibold text-slate-900">
@@ -17,7 +22,11 @@ export function InternshipList({ internships, isLoading }: InternshipListProps) 
       ) : internships.length > 0 ? (
         <div>
           {internships.map((internship) => (
-            <InternshipCard key={internship.id} internship={internship} />
+            <InternshipCard
+              key={internship.id}
+              internship={internship}
+              onStatusChange={onStatusChange}
+            />
           ))}
         </div>
       ) : (

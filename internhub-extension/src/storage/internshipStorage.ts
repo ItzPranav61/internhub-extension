@@ -1,4 +1,4 @@
-import type { Internship } from '../types/internship'
+import type { Internship, InternshipStatus } from '../types/internship'
 
 const STORAGE_KEY = 'internships'
 
@@ -44,4 +44,16 @@ export async function isDuplicate(url: string): Promise<boolean> {
   const internships = await getInternships()
 
   return internships.some((internship) => internship.url === url)
+}
+
+export async function updateInternshipStatus(
+  id: string,
+  status: InternshipStatus,
+): Promise<void> {
+  const internships = await getInternships()
+  const updatedInternships = internships.map((internship) =>
+    internship.id === id ? { ...internship, status } : internship,
+  )
+
+  await saveInternships(updatedInternships)
 }

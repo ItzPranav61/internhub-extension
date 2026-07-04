@@ -3,8 +3,9 @@ import {
   getInternships,
   isDuplicate,
   saveInternship,
+  updateInternshipStatus,
 } from '../storage/internshipStorage'
-import type { Internship } from '../types/internship'
+import type { Internship, InternshipStatus } from '../types/internship'
 import { getCurrentTab } from '../utils/getCurrentTab'
 
 function getCompanyFromUrl(url: string) {
@@ -87,11 +88,28 @@ export function useInternships() {
     }
   }
 
+  async function changeStatus(id: string, status: InternshipStatus) {
+    setMessage('')
+
+    try {
+      await updateInternshipStatus(id, status)
+
+      const savedInternships = await getInternships()
+      setInternships(savedInternships)
+      setMessage('Status updated.')
+    } catch (error) {
+      setMessage(
+        error instanceof Error ? error.message : 'Could not update status.',
+      )
+    }
+  }
+
   return {
     internships,
     isLoading,
     isSaving,
     message,
+    changeStatus,
     saveActivePage: handleSaveActivePage,
   }
 }
