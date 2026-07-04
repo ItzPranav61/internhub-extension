@@ -4,13 +4,19 @@ import { SaveButton } from '../components/SaveButton'
 import { useInternships } from '../hooks/useInternships'
 
 export function Popup() {
-  const { internships, isLoading, isSaving, saveActivePage } = useInternships()
+  const { internships, isLoading, isSaving, message, saveActivePage } =
+    useInternships()
 
   return (
     <main className="w-full min-w-80 max-w-sm bg-white text-slate-900">
       <Header />
       <div className="px-4 py-3">
         <SaveButton isSaving={isSaving} onSave={saveActivePage} />
+        {message ? (
+          <p className="mt-2 text-sm text-slate-600" role="status">
+            {message}
+          </p>
+        ) : null}
       </div>
       <InternshipList internships={internships} isLoading={isLoading} />
     </main>

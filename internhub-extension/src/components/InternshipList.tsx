@@ -21,9 +21,10 @@ export function InternshipList({ internships, isLoading }: InternshipListProps) 
           ))}
         </div>
       ) : (
-        <p className="px-4 py-4 text-sm text-slate-500">
-          No internships saved yet.
-        </p>
+        <div className="px-4 py-4 text-sm text-slate-500">
+          <p>No internships saved yet.</p>
+          <p className="mt-1">Visit a job page and click "Save Current Page".</p>
+        </div>
       )}
     </section>
   )
