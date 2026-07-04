@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "InternHub Extension",
+  "description": "Save internship opportunities and track application status.",
+  "version": "0.1.0",
+  "action": {
+    "default_title": "InternHub",
+    "default_popup": "index.html"
+  },
+  "permissions": ["storage"]
+}
