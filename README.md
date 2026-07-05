@@ -66,6 +66,20 @@ internhub-extension/
 - `hooks/useInternships.ts`: coordinates loading, saving, status changes, deleting, and UI messages.
 - `components/`: renders the popup UI and receives callbacks from the hook.
 
+## Architecture Decisions
+
+### Why Chrome APIs Are Isolated
+
+Chrome APIs are kept in `storage/` and `utils/` so React components do not depend directly on browser-extension globals. This makes the UI easier to reason about, keeps components focused on rendering, and makes future testing or API changes less risky.
+
+### Why `chrome.storage.local`
+
+The MVP only needs local persistence on the user's browser. `chrome.storage.local` is built into Manifest V3, works without a backend or authentication, and keeps the project focused on the core workflow: save, track, update, and delete internships.
+
+### Why a Custom Hook
+
+`useInternships` acts as the workflow coordinator between UI events and persistence. The hook loads internships when the popup opens, saves the active tab, updates status, deletes records, refreshes state, and surfaces user-facing messages. This keeps the popup component small and keeps business flow out of presentational components.
+
 ## Data Model
 
 ```ts
@@ -114,6 +128,20 @@ The production extension build is created in:
 internhub-extension/dist
 ```
 
+## Release Package
+
+The loadable extension folder is:
+
+```text
+internhub-extension/dist
+```
+
+A zipped distributable is available at:
+
+```text
+release/internhub-extension-dist.zip
+```
+
 ## Usage
 
 1. Run `npm run build`.
@@ -129,7 +157,7 @@ internhub-extension/dist
 
 ## Manual Test Flow
 
-Last verified during Milestone 6:
+Last verified during Milestone 7:
 
 1. Save an internship from the active tab.
 2. Reload the popup and confirm the internship remains.
@@ -145,6 +173,15 @@ Expected result:
 - Deleted internships do not return.
 - The empty state appears after deleting the last internship.
 
+## Release Verification
+
+- `npm run lint` passed.
+- `npm run build` passed.
+- The built `dist` folder was loaded in Chrome through `chrome://extensions`.
+- The generated extension ID was detected from Chrome's extensions page.
+- Persistence behavior was verified in the built extension context.
+- The release package was zipped from the production `dist` output.
+
 ## Screenshots
 
 Screenshots are stored in `docs/screenshots/`.
@@ -154,6 +191,10 @@ Screenshots are stored in `docs/screenshots/`.
 ![Status updated](docs/screenshots/02-status-updated.png)
 
 ![Empty state](docs/screenshots/03-empty-state.png)
+
+## Demo
+
+![InternHub demo](docs/demo/internhub-demo.gif)
 
 ## Future Roadmap
 
