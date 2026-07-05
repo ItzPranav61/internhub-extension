@@ -84,19 +84,15 @@ The MVP only needs local persistence on the user's browser. `chrome.storage.loca
 
 ```ts
 export type InternshipStatus =
-  | 'Saved'
-  | 'Applied'
-  | 'Interview'
-  | 'Rejected'
-  | 'Offer'
+  "Saved" | "Applied" | "Interview" | "Rejected" | "Offer";
 
 export interface Internship {
-  id: string
-  title: string
-  company: string
-  url: string
-  status: InternshipStatus
-  savedAt: string
+  id: string;
+  title: string;
+  company: string;
+  url: string;
+  status: InternshipStatus;
+  savedAt: string;
 }
 ```
 
@@ -181,6 +177,14 @@ Expected result:
 - The generated extension ID was detected from Chrome's extensions page.
 - Persistence behavior was verified in the built extension context.
 - The release package was zipped from the production `dist` output.
+
+## Engineering Quality
+
+- Unit tests cover storage helpers, duplicate detection, status updates, delete logic, tab lookup, and the `useInternships` hook.
+- ESLint checks TypeScript and React hook rules.
+- Prettier keeps formatting consistent.
+- GitHub Actions runs install, lint, build, and tests on pushes and pull requests.
+- Issue templates and a pull request template are included for a cleaner solo or team workflow.
 
 ## Screenshots
 
