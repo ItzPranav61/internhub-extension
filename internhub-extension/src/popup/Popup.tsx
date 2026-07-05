@@ -10,6 +10,7 @@ export function Popup() {
     isSaving,
     message,
     changeStatus,
+    removeInternship,
     saveActivePage,
   } = useInternships()
 
@@ -27,6 +28,7 @@ export function Popup() {
       <InternshipList
         internships={internships}
         isLoading={isLoading}
+        onDelete={removeInternship}
         onStatusChange={changeStatus}
       />
     </main>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import {
+  deleteInternship,
   getInternships,
   isDuplicate,
   saveInternship,
@@ -104,12 +105,29 @@ export function useInternships() {
     }
   }
 
+  async function removeInternship(id: string) {
+    setMessage('')
+
+    try {
+      await deleteInternship(id)
+
+      const savedInternships = await getInternships()
+      setInternships(savedInternships)
+      setMessage('Internship deleted.')
+    } catch (error) {
+      setMessage(
+        error instanceof Error ? error.message : 'Could not delete internship.',
+      )
+    }
+  }
+
   return {
     internships,
     isLoading,
     isSaving,
     message,
     changeStatus,
+    removeInternship,
     saveActivePage: handleSaveActivePage,
   }
 }

@@ -4,12 +4,14 @@ import { InternshipCard } from './InternshipCard'
 type InternshipListProps = {
   internships: Internship[]
   isLoading: boolean
+  onDelete: (id: string) => void
   onStatusChange: (id: string, status: InternshipStatus) => void
 }
 
 export function InternshipList({
   internships,
   isLoading,
+  onDelete,
   onStatusChange,
 }: InternshipListProps) {
   return (
@@ -25,6 +27,7 @@ export function InternshipList({
             <InternshipCard
               key={internship.id}
               internship={internship}
+              onDelete={onDelete}
               onStatusChange={onStatusChange}
             />
           ))}

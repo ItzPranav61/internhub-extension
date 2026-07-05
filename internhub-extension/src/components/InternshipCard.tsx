@@ -10,11 +10,13 @@ const statuses: InternshipStatus[] = [
 
 type InternshipCardProps = {
   internship: Internship
+  onDelete: (id: string) => void
   onStatusChange: (id: string, status: InternshipStatus) => void
 }
 
 export function InternshipCard({
   internship,
+  onDelete,
   onStatusChange,
 }: InternshipCardProps) {
   return (
@@ -23,22 +25,32 @@ export function InternshipCard({
         {internship.company}
       </p>
       <p className="mt-1 text-sm text-slate-700">{internship.title}</p>
-      <select
-        className="mt-3 rounded-md border border-slate-300 bg-white px-2 py-1 text-sm text-slate-900"
-        value={internship.status}
-        onChange={(event) =>
-          onStatusChange(
-            internship.id,
-            event.currentTarget.value as InternshipStatus,
-          )
-        }
-      >
-        {statuses.map((status) => (
-          <option key={status} value={status}>
-            {status}
-          </option>
-        ))}
-      </select>
+      <div className="mt-3 flex items-center justify-between gap-3">
+        <select
+          className="rounded-md border border-slate-300 bg-white px-2 py-1 text-sm text-slate-900"
+          value={internship.status}
+          onChange={(event) =>
+            onStatusChange(
+              internship.id,
+              event.currentTarget.value as InternshipStatus,
+            )
+          }
+        >
+          {statuses.map((status) => (
+            <option key={status} value={status}>
+              {status}
+            </option>
+          ))}
+        </select>
+        <button
+          type="button"
+          className="rounded-md border border-slate-300 bg-white px-2 py-1 text-sm text-slate-700 hover:bg-slate-50"
+          aria-label={`Delete ${internship.title}`}
+          onClick={() => onDelete(internship.id)}
+        >
+          🗑 Delete
+        </button>
+      </div>
     </article>
   )
 }

@@ -57,3 +57,12 @@ export async function updateInternshipStatus(
 
   await saveInternships(updatedInternships)
 }
+
+export async function deleteInternship(id: string): Promise<void> {
+  const internships = await getInternships()
+  const updatedInternships = internships.filter(
+    (internship) => internship.id !== id,
+  )
+
+  await saveInternships(updatedInternships)
+}
