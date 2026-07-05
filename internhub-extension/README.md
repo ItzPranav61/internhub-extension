@@ -1,23 +1,14 @@
-# InternHub Extension
+# InternHub Extension App
 
-Chrome extension MVP starter for saving internship opportunities and tracking application status.
+This folder contains the React, TypeScript, Vite, and Manifest V3 app for InternHub Extension.
 
-## Stack
+For the full project overview, architecture, setup, usage, screenshots, and roadmap, see the repository README one folder up.
 
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
-- Chrome Extension Manifest V3
-
-## Scripts
+## Commands
 
 ```bash
 npm install
 npm run dev
 npm run build
+npm run lint
 ```
-
-## Extension Manifest
-
-The Chrome Extension Manifest V3 file lives at `public/manifest.json`.

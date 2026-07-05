@@ -48,7 +48,7 @@ export function InternshipCard({
           aria-label={`Delete ${internship.title}`}
           onClick={() => onDelete(internship.id)}
         >
-          🗑 Delete
+          Delete
         </button>
       </div>
     </article>

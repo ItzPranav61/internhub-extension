@@ -14,7 +14,9 @@ function getCompanyFromUrl(url: string) {
     const hostname = new URL(url).hostname.replace(/^www\./, '')
     const [company] = hostname.split('.')
 
-    return company ? company.charAt(0).toUpperCase() + company.slice(1) : 'Unknown'
+    return company
+      ? company.charAt(0).toUpperCase() + company.slice(1)
+      : 'Unknown'
   } catch {
     return 'Unknown'
   }
