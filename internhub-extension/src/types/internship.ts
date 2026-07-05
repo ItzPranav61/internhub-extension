@@ -1,9 +1,5 @@
 export type InternshipStatus =
-  | 'Saved'
-  | 'Applied'
-  | 'Interview'
-  | 'Rejected'
-  | 'Offer'
+  'Saved' | 'Applied' | 'Interview' | 'Rejected' | 'Offer'
 
 export interface Internship {
   id: string
